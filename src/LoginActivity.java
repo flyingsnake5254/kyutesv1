@@ -1,9 +1,16 @@
 import UI.LoginFrame;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class LoginActivity{
     private static JButton buttonLogin;
@@ -12,15 +19,8 @@ public class LoginActivity{
     private static LoginFrame loginFrame;
     public LoginActivity(){
         setUI();
-            // button listener
-        buttonLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(editAccount.getText());
-                System.out.println(editPassword.getText());
-                System.exit(0);
-            }
-        });
+        getUserData();
+        buttonListener();
     }
 
     private void setUI(){
@@ -61,5 +61,21 @@ public class LoginActivity{
 
         loginFrame.setLayout(null);
         loginFrame.setVisible(true);
+    }
+
+    private void getUserData(){
+        String path = this.getClass().getClassLoader().getResource(".").getPath();
+
+    }
+
+    private void buttonListener(){
+        buttonLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(editAccount.getText());
+                System.out.println(editPassword.getText());
+                System.exit(0);
+            }
+        });
     }
 }
